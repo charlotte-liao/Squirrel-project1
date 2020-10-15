@@ -17,7 +17,7 @@ class Squirrel(models.Model):
     LinktoUnique=models.URLField(
             max_length=300,
             unique=True,
-            default='',
+            blank = True,
     )
 
     def __str__(self):
@@ -26,13 +26,13 @@ class Squirrel(models.Model):
 
     Latitude = models.CharField(
             max_length=20,
-            default='',
+            blank = True,
             help_text='Latitude discovered',
     )
 
     Longitude = models.CharField(
             max_length=20,
-            default='',
+            blank = True,
             help_text='Longitude discovered',
     )
    
