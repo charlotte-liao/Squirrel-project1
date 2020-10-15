@@ -14,12 +14,6 @@ class Squirrel(models.Model):
             help_text='Date',
     )
 
-    LinktoUnique=models.URLField(
-            max_length=300,
-            unique=True,
-            blank = True,
-    )
-
     def __str__(self):
         return self.UniqueSquirrelID
 
