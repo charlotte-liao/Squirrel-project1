@@ -16,6 +16,9 @@ class Squirrel(models.Model):
             max_length=300,
             unique=True,
         )
+    
+    def __str__(self):
+        return self.UniqueSquirrelID
 
     #def get_squirrel(self):
         #return self.Squirrel 
