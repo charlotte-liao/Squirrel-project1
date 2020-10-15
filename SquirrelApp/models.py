@@ -17,6 +17,7 @@ class Squirrel(models.Model):
     LinktoUnique=models.URLField(
             max_length=300,
             unique=True,
+            default='',
     )
 
     def __str__(self):
@@ -24,12 +25,14 @@ class Squirrel(models.Model):
 
 
     Latitude = models.CharField(
-            max_length=20, 
+            max_length=20,
+            default='',
             help_text='Latitude discovered',
     )
 
     Longitude = models.CharField(
             max_length=20,
+            default='',
             help_text='Longitude discovered',
     )
    
@@ -51,6 +54,7 @@ class Squirrel(models.Model):
     Age = models.CharField(
             max_length=20,
             help_text='Age',
+            default=0,
     )
 
     PrimaryFurColor = models.CharField(
