@@ -5,19 +5,18 @@ from django.db import models
 
 
 class Sighting(models.Model):
-    squirrel = models.ForeignKey(
-            'SquirrelApp.Squirrel',
-            on_delete=models.CASCADE,
-    )
 
-    UniqueSquirrelID = squirrel.getID()
+    UniqueSquirrelID=models.CharField(
+            max_length=100,
+            help_text='Unique Squirrel ID',
+    )
 
     Date=models.DateField(
             help_text='Date',
     )
 
     def __str__(self):
-        return self.id
+        return f'{self.id}'
 
 
     Latitude = models.CharField(

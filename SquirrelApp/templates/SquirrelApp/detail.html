@@ -1,87 +1,10 @@
-{% extends 'SquirrelApp/base.html' %}
+<html>
+        <body>
+	  <ul>
+ 	    <li>{{ sighting.id }}</li>
+  	    <li>{{ sighting.Date }}</li>
+  	    <li>{{ sighting.Latitude }}</li>
+	  </ul>
+        </body>
 
-{% load static %}
-
-{% block title %} - {{ squirrel.UniqueSquirrelID }}{% endblock %}
-
-{% block main %}
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <form id="submit" method="post" action="{% url 'SquirrelApp:update_request'  %}" class="input-group mb-3">
-            {% csrf_token %}
-	    <label for="latitude">Latitude:</label>
-            <input type="text"
-		   id="latitude"
-                   name="Latitude"
-		   class="form-control"/><br><br>
-	    <label for="longitude">Longitude:</label>
-	    <input type="text"
-                   id="longtitude"
-		   name="Longitude"
-                   class="form-control"/><br><br>
-            <input type="hidden" name="UniqueSquirrelID" value="{{ squirrel.UniqueSquirrelID }}">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit">UpdateRequest</button>
-            </div>
-            <div id="errors" class="mb-3"></div>
-          </form>
-        </div>
-        <div class="col-md-8">
-          <div class="card mb-8 shadow-sm">
-            <div class="card-body">
-              <p class="card-text">
-                <div class="squirred-id">
-                  <strong>{{ squirrel.UniqueSquirrelID }}</strong>
-                </div>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endblock %}
-{% block extra_footer %}
-  <script>
-    function csrfSafeMethod(method) {
-      // these HTTP methods do not require CSRF protection
-      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-    }
-
-    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
-    $.ajaxSetup({
-      beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-          xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        }
-      }
-    });
-
-    $("#submit").submit(function(event) {
-      event.preventDefault();
-
-      var Latitude = $('input[name=Latitude]').val();
-      var Longitude = $('input[name=Longitude]').val();	
-      $.post({
-        url: "{% url 'SquirrelApp:update_request' %}",
-        data: {
-          UniqueSquirrelID: "{{ squirrel.UniqueSquirrelID }}",
-          Latitude: Latitude,
-	  Longitude: Longitude,
-        },
-        dataType: "json",
-      }).done(function(response) {
-        $("#submit").html('Your request has been received!');
-      }).fail(function(response) {
-        if (response.statusText === "error") {
-          var errors = "Oops, looks like an error on our side. Please try again later.";
-        } else {
-          var errors = response.responseJSON.errors.adopter;
-        }
-        $("#submit").html(errors);
-      });
-    });
-  </script>
-{% endblock %}
+</html> 

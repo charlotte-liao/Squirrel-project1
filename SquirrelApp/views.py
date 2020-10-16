@@ -8,16 +8,16 @@ from .models import Sighting
 from .models import Squirrel
 
 def index(request):
-    sighting = Sighting.objects.all()
+    sightings = Sighting.objects.all()
     context = {
-            'sighting': sighting,
+            'sightings': sightings,
     }
     return render(request, 'SquirrelApp/index.html', context)
 
 
-def sighting_details(request, squirrel_id):
-    squirrel = get_object_or_404(Squirrel, pk=squirrel_id)
-    return render(request, 'SquirrelApp/detail.html', {'squirrel':squirrel})
+def sighting_details(request, sighting_id):
+    sighting = get_object_or_404(Sighting, pk=sighting_id)
+    return render(request, 'SquirrelApp/detail.html', {'sighting':sighting})
 
 
 def update_request(request, squirrel_id):

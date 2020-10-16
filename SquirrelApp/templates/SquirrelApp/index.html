@@ -9,13 +9,13 @@
     <div class="container">
 
       <div class="row">
-        {% for sighting in Sightings %}
+        {% for sighting in sightings %}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <div class="card-body">
               <p class="card-text">
-                <div class="squirrel-id">
-                  <strong>{{ sighting.UniqueSquirrelID }}</strong>
+                <div class="sighting-id">
+                  <strong>{{ sighting.id }}</strong>
                 </div>
                 <div>
                   <span class="text-muted font-italic">Date</span>
@@ -26,7 +26,7 @@
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a class="btn btn-sm btn-outline-secondary" href="{% url 'SquirrelApp:detail' sighting.UniqueSquirrelID %}">Update</a>
+                  <a class="btn btn-sm btn-outline-secondary" href="{% url 'SquirrelApp:detail' sighting.id %}">Detail</a>
               </div>
             </div>
           </div>
