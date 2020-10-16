@@ -15,13 +15,31 @@ class Command(BaseCommand):
             reader=csv.DictReader(fp)
             for item in reader:
                 obj=Squirreldetail()
-                obj.latitude=item['X']
-                obj.longtitude = item['Y']
-                obj.shift = item['Shift']
-                obj.date = item['Date']
-                obj.age = item['Age']
-                obj.uniqueid = item['Unique Squirrel ID']
+                obj.Latitude=item['X']
+                obj.Longtitude = item['Y']
+                obj.Shift = item['Shift']
+                obj.Date = item['Date']
+                obj.Age = item['Age']
+                obj.UniqueSquirrelID = item['Unique Squirrel ID']
+                obj.PrimaryFurColor=item['Primary Fur Color']
+                obj.Location=item['Location']
+                obj.SpecificLocation=item['Specific Location']
+                obj.Running=item['Running']
+                obj.Chasing=item['Chasing']
+                obj.Climbing=item['Climbing']
+                obj.Eating=item['Eating']
+                obj.Foraging=item['Foraging']
+                obj.OtherActivities=item['Other Activites']
+                obj.Kuks=item['Kuks']
+                obj.Quaas=item['Quaas']
+                obj.Moans=item['Moans']
+                obj.TailFlags=item['Tail flags']
+                obj.TailTwitches=item['Tail twitches']
+                obj.Approaches=item['Approaches']
+                obj.Indifferent=item['Indifferent']
+                obj.RunsFrom=item['Run from']
                 obj.save()
+
 
         msg=f'You are importing from {file_}'
         self.stdout.write(self.style.SUCCESS(msg))
