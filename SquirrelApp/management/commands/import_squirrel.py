@@ -1,7 +1,7 @@
 
 from django.core.management.base import BaseCommand
 import csv
-from SquirrelApp.models import Squirreldetail
+from SquirrelApp.models import Squirrel
 
 class Command(BaseCommand):
     help="Getting information about squirrels"
@@ -14,7 +14,7 @@ class Command(BaseCommand):
         with open(file_) as fp:
             reader=csv.DictReader(fp)
             for item in reader:
-                obj=Squirreldetail()
+                obj=Squirrel()
                 obj.Latitude=item['X']
                 obj.Longtitude = item['Y']
                 obj.Shift = item['Shift']
