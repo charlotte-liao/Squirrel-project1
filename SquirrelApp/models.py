@@ -4,19 +4,20 @@ from django.db import models
   #return "hello"
 
 
-class Squirrel(models.Model):
-    UniqueSquirrelID=models.CharField(
-            max_length=100,
-            help_text='Unique Squirrel ID',
-            primary_key = True
+class Sighting(models.Model):
+    squirrel = models.ForeignKey(
+            'SquirrelApp.Squirrel',
+            on_delete=models.CASCADE,
     )
+
+    UniqueSquirrelID = squirrel.getID()
 
     Date=models.DateField(
             help_text='Date',
     )
 
     def __str__(self):
-        return self.UniqueSquirrelID
+        return self.id
 
 
     Latitude = models.CharField(
@@ -122,4 +123,18 @@ class Squirrel(models.Model):
     RunsFrom = models.BooleanField(
             blank = True,
     )
-    
+   
+
+
+class Squirrel:
+    UniqueSquirrelID=models.CharField(
+            max_length=100,
+            primary_key=True,
+            help_text='Unique Squirrel ID',
+    )
+
+    def getID(self):
+        return self.UniqueSquirrelID
+
+    def __str__(self):
+        return self.UniqueSquirrelID

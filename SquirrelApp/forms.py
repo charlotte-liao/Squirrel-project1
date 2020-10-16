@@ -1,22 +1,44 @@
 from django.forms import ModelForm
 
-from .models import Squirrel
+from .models import Sighting
 
 class UpdateRequestForm(ModelForm):
-    
     class Meta:
-        model = Squirrel
+        model = Sighting
         fields = [
+                'UniqueSquirrelID',
                 'Latitude',
                 'Longitude',
                 'Shift',
                 'Date', 
                 'Age',
         ]
-    
-        def save(self, squirrel=None):
-            update_request = super(UpdateRequestForm, self).save(commit=False)
-            if squirrel:
-                update_request.squirrel = squirrel
-            update_request.save()
-            return update_request
+   
+class AddRequestForm(ModelForm):
+    class Meta:
+        model = Sighting
+        fields = [
+                'UniqueSquirrelID',
+                'Latitude',
+                'Longitude',
+                'Shift',
+                'Date',
+                'Age',
+                'PrimaryFurColor',
+                'Location',
+                'SpecificLocation',
+                'Running',
+                'Chasing',
+                'Climbing',
+                'Eating',
+                'Foraging',
+                'OtherActivities',
+                'Kuks',
+                'Quaas',
+                'Moans',
+                'TailFlags',
+                'TailTwitches',
+                'Approaches',
+                'Indifferent',
+                'RunsFrom',
+        ]

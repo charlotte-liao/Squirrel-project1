@@ -2,25 +2,26 @@
 
 {% load static %}
 
-{% block title %} - {{ pet.name }}{% endblock %}
+{% block title %} - {{ squirrel.UniqueSquirrelID }}{% endblock %}
 
 {% block main %}
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <form id="submit" method="post" action="{% url 'SquirrelApp:update_request' %}" class="input-group mb-3">
+          <form id="submit" method="post" action="{% url 'SquirrelApp:update_request'  %}" class="input-group mb-3">
             {% csrf_token %}
-	    <label for="latitude">Latitude:</label><br>
+	    <label for="latitude">Latitude:</label>
             <input type="text"
 		   id="latitude"
                    name="Latitude"
-		   class="form-control"/><br>
-	    <label for="longitude">Longitude:</label><br>
+		   class="form-control"/><br><br>
+	    <label for="longitude">Longitude:</label>
 	    <input type="text"
-                   name="Longitude"
-                   class="form-control"/>
-            <input type="hidden" name="squirrel_id" value="{{ squirrel.UniqueSquirrelID }}">
+                   id="longtitude"
+		   name="Longitude"
+                   class="form-control"/><br><br>
+            <input type="hidden" name="UniqueSquirrelID" value="{{ squirrel.UniqueSquirrelID }}">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="submit">UpdateRequest</button>
             </div>
@@ -33,42 +34,6 @@
               <p class="card-text">
                 <div class="squirred-id">
                   <strong>{{ squirrel.UniqueSquirrelID }}</strong>
-                </div>
-                <div>
-                  <span class="text-muted font-italic">Latitude:</span>
-                  <span>
-                    {{ squirrel.Latitude }}
-                  </span>
-                </div>
-                <div>
-                  <span class="text-muted font-italic">Longitute:</span>
-                  <span>
-                    {{ squirrel.Longitude }}
-                  </span>
-                </div>
-                <div>
-                  <span class="text-muted font-italic">Squirrel ID:</span>
-                  <span>
-                    {{ squirrel.UniqueSquirrelID }}
-                  </span>
-                </div>
-                <div>
-                  <span class="text-muted font-italic">Shift:</span>
-                  <span>
-                    {% if squirrel.Shift == "AM" %}AM{% else %}PM{% endif %}
-                  </span>
-                </div>
-                <div>
-                  <span class="text-muted font-italic">Date discovered:</span>
-                  <span>
-                    {{ squirrel.Date }}
-                  </span>
-                </div>
-                <div>
-                  <span class="text-muted font-italic">Age:</span>
-                  <span>
-                    {{ squirrel.Age }}
-                  </span>
                 </div>
               </p>
             </div>
@@ -97,14 +62,14 @@
     $("#submit").submit(function(event) {
       event.preventDefault();
 
-      var Latitude = $('input[name=latitude]').val();
-      var Longitude = $('input[name=longitude]').val();	
+      var Latitude = $('input[name=Latitude]').val();
+      var Longitude = $('input[name=Longitude]').val();	
       $.post({
         url: "{% url 'SquirrelApp:update_request' %}",
         data: {
-          squirrel: "{{ squirrel.UniqueSquirrelID }}",
-          latitude: Latitude,
-	  longitude: Longitude,
+          UniqueSquirrelID: "{{ squirrel.UniqueSquirrelID }}",
+          Latitude: Latitude,
+	  Longitude: Longitude,
         },
         dataType: "json",
       }).done(function(response) {

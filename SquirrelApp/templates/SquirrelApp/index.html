@@ -2,31 +2,31 @@
 
 {% load static %}
 
-{% block title %} - All Squirrels{% endblock %}
+{% block title %} - All Sightings{% endblock %}
 
 {% block main %}
   <div class="album py-5 bg-light">
     <div class="container">
 
       <div class="row">
-        {% for squirrel in squirrels %}
+        {% for sighting in Sightings %}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <div class="card-body">
               <p class="card-text">
                 <div class="squirrel-id">
-                  <strong>{{ squirrel.UniqueSquirrelID }}</strong>
+                  <strong>{{ sighting.UniqueSquirrelID }}</strong>
                 </div>
                 <div>
                   <span class="text-muted font-italic">Date</span>
                   <span>
-                    {{ pet.Date }}
+                    {{ sighting.Date }}
                   </span>
                 </div>
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a class="btn btn-sm btn-outline-secondary" href="{% url 'SquirrelApp:details' squirrel.UniqueSquirrelID %}">View</a>
+                  <a class="btn btn-sm btn-outline-secondary" href="{% url 'SquirrelApp:detail' sighting.UniqueSquirrelID %}">Update</a>
               </div>
             </div>
           </div>
