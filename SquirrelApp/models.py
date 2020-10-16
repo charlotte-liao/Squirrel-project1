@@ -8,6 +8,7 @@ class Squirrel(models.Model):
     UniqueSquirrelID=models.CharField(
             max_length=100,
             help_text='Unique Squirrel ID',
+            primary_key = True
     )
 
     Date=models.DateField(
@@ -122,7 +123,3 @@ class Squirrel(models.Model):
             blank = True,
     )
     
-
-
-    #def get_squirrel(self):
-        #return self.Squirrel 

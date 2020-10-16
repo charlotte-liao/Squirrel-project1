@@ -1,0 +1,122 @@
+{% extends 'SquirrelApp/base.html' %}
+
+{% load static %}
+
+{% block title %} - {{ pet.name }}{% endblock %}
+
+{% block main %}
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <form id="submit" method="post" action="{% url 'SquirrelApp:update_request' %}" class="input-group mb-3">
+            {% csrf_token %}
+	    <label for="latitude">Latitude:</label><br>
+            <input type="text"
+		   id="latitude"
+                   name="Latitude"
+		   class="form-control"/><br>
+	    <label for="longitude">Longitude:</label><br>
+	    <input type="text"
+                   name="Longitude"
+                   class="form-control"/>
+            <input type="hidden" name="squirrel_id" value="{{ squirrel.UniqueSquirrelID }}">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">UpdateRequest</button>
+            </div>
+            <div id="errors" class="mb-3"></div>
+          </form>
+        </div>
+        <div class="col-md-8">
+          <div class="card mb-8 shadow-sm">
+            <div class="card-body">
+              <p class="card-text">
+                <div class="squirred-id">
+                  <strong>{{ squirrel.UniqueSquirrelID }}</strong>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Latitude:</span>
+                  <span>
+                    {{ squirrel.Latitude }}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Longitute:</span>
+                  <span>
+                    {{ squirrel.Longitude }}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Squirrel ID:</span>
+                  <span>
+                    {{ squirrel.UniqueSquirrelID }}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Shift:</span>
+                  <span>
+                    {% if squirrel.Shift == "AM" %}AM{% else %}PM{% endif %}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Date discovered:</span>
+                  <span>
+                    {{ squirrel.Date }}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Age:</span>
+                  <span>
+                    {{ squirrel.Age }}
+                  </span>
+                </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_footer %}
+  <script>
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      }
+    });
+
+    $("#submit").submit(function(event) {
+      event.preventDefault();
+
+      var Latitude = $('input[name=latitude]').val();
+      var Longitude = $('input[name=longitude]').val();	
+      $.post({
+        url: "{% url 'SquirrelApp:update_request' %}",
+        data: {
+          squirrel: "{{ squirrel.UniqueSquirrelID }}",
+          latitude: Latitude,
+	  longitude: Longitude,
+        },
+        dataType: "json",
+      }).done(function(response) {
+        $("#submit").html('Your request has been received!');
+      }).fail(function(response) {
+        if (response.statusText === "error") {
+          var errors = "Oops, looks like an error on our side. Please try again later.";
+        } else {
+          var errors = response.responseJSON.errors.adopter;
+        }
+        $("#submit").html(errors);
+      });
+    });
+  </script>
+{% endblock %}
