@@ -1,7 +1,7 @@
 
 from django.core.management.base import BaseCommand
 import csv
-from SquirrelApp.models import Squirrel
+from SquirrelApp.models import Sighting
 
 class Command(BaseCommand):
     help="Getting information about squirrels"
@@ -14,7 +14,7 @@ class Command(BaseCommand):
         with open(file_) as fp:
             reader=csv.DictReader(fp)
             for item in reader:
-                obj=Squirrel()
+                obj=Sighting()
                 obj.Latitude=item['X']
                 obj.Longtitude = item['Y']
                 obj.Shift = item['Shift']
@@ -43,3 +43,16 @@ class Command(BaseCommand):
 
         msg=f'You are importing from {file_}'
         self.stdout.write(self.style.SUCCESS(msg))
+
+
+#def receice_data(request):
+   # if request_method='POST':
+       # form= SquirrelSightingForm(request.POST)
+       # if form is valid():
+           # form.save()
+   # else:
+       # retun http200(form.errors)
+
+
+
+

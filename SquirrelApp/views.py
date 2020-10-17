@@ -64,6 +64,8 @@ def add_request(request):
 
     return JsonResponse({}, status=405)
 
+def map(request):
+    return render(request, 'map.html',context)
 
 
 
