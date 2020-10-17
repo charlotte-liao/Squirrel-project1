@@ -5,6 +5,13 @@ from django.db import models
 
 
 class Sighting(models.Model):
+    """
+    SquirrelObject = models.ForeignKey(
+            'SquirrelApp.Squirrel',
+            on_delete=models.CASCADE,
+            default=Squirrel.objects.get(pk=UniqueSquirrelID),
+    )
+    """
 
     UniqueSquirrelID=models.CharField(
             max_length=100,
@@ -125,15 +132,12 @@ class Sighting(models.Model):
    
 
 
-class Squirrel:
+class Squirrel(models.Model):
     UniqueSquirrelID=models.CharField(
             max_length=100,
             primary_key=True,
             help_text='Unique Squirrel ID',
     )
-
-    def getID(self):
-        return self.UniqueSquirrelID
 
     def __str__(self):
         return self.UniqueSquirrelID
