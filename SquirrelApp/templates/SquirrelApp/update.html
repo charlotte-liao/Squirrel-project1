@@ -1,30 +1,30 @@
 <html>
  <body>
    <div>
-        <strong>Update form for {{ squirrel.UniqueSquirrelID }}</strong>
-   </div>>
+        <strong>Update form for {{ sighting.UniqueSquirrelID }}</strong>
+   </div>
    <div>
      <form id="submit" method="post" action="{% url 'SquirrelApp:update' %}">
         {% csrf_token %}
-	<label for="latitude">Latitude</label><br>
-        <input type="text" id="latitude" name="latitude"><br>
-        <label for="longitude">Longitude:</label><br>
-        <input type="text" id="longitude" name="longtude"><br>
+	<label for="Latitude">Latitude</label><br>
+	<input type="text" id="Latitude" placeholder="{{sighting.Latitude}}" name="Latitude"><br>
+        <label for="Longitude">Longitude:</label><br>
+        <input type="text" id="Longitude" placeholder="{{sighting.Longitude}}" name="Longtude"><br>
 
-        <label for="shift">Shift:</label><br>
-        <input type="radio" id="AM" name="shift" value="AM">
+        <label for="Shift">Shift:</label><br>
+        <input type="radio" id="AM" name="Shift" value="AM">
         <label for="AM">AM</label><br>
-        <input type="radio" id="PM" name="shift" value="PM">
+        <input type="radio" id="PM" name="Shift" value="PM">
         <label for="PM">PM</label><br>
 
-        <label for="date">Date:</label><br>
-        <input type="date" id="date" name="date"><br>
-        <label for="age">Age:</label><br>
-        <input type="number" id="age" name="age"><br>
-        <input type="hidden" name="squirrel_id" value="{{squirrel.UniqueSquirrelID}}" >
+        <label for="Date">Date:</label><br>
+        <input type="date" id="Date" placeholder="{{sighting.Date}}" name="Date"><br>
+        <label for="Dge">Age:</label><br>
+        <input type="number" id="Age" name="Age"><br>
+        <input type="hidden" name="UniqueSquirrelID" value="{{sighting.UniqueSquirrelID}}" >
 
         <input type="submit" value="Update">
-  </div>>
+  </div>
  </body>
 
 </html>

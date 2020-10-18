@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.http import JsonResponse
-from .forms import UpdateRequestForm
-from .forms import AddRequestForm
+from .forms import SightingForm
+from .forms import UpdateForm
 from .models import Sighting
 from .models import Squirrel
 
@@ -12,7 +12,7 @@ def index(request):
     context = {
             'sightings': sightings,
     }
-    return render(request, 'SquirrelApp/index.html', context)
+    return render(request, 'SquirrelApp/sighting.html', context)
 
 
 def sighting_details(request, sighting_id):
@@ -20,35 +20,38 @@ def sighting_details(request, sighting_id):
     return render(request, 'SquirrelApp/detail.html', {'sighting':sighting})
 
 
-def update_page(request, squirrel_id):
-    squirrel = get_object_or_404(Squirrel, pk=squirrel_id)
-    return render(request, 'SquirrelApp/update.html', {'squirrel':squirrel})
+def update_page(request, sighting_id):
+    sighting = get_object_or_404(Sighting, pk=sighting_id)
+    context = {
+            'sighting':sighting,
+            }
+    return render(request, 'SquirrelApp/update.html', context)
+
 
 def update_request(request):
     if request.method == 'POST':
-        if request.POST.get('squirrel_id'):
-            sighting = Sighting(request.POST)
-            sighting.UniqueSquirrelID = request.POST.get('squirrel_id')
-            sighting.Longtitude = request.POST.get('longitude')
-            sighting.Latitude = request.POST.get('latitude')
-            sighting.Shift = request.POST.get('shift')
-            sighting.Date = request.POST.get('date')
-            sighting.Age = request.POST.get('age')
-            sighting.save()
-            return render(request, 'SquirrelApp/submitted.html')
-        else:
-            return render(request, 'Squirrel/submitfail.html')
-    else:
-        return JsonResponse({'eh'})
-
-        """
-        form = UpdateRequestForm(request.POST)
+        form = UpdateForm(request.POST)
         if form.is_valid():
             form.save()
-            return JsonResponse({})
+            return render(request, 'SquirrelApp/submitted.html')
         else:
-            return JsonResponse({'errors': form.errors}, status=400)
-        """
+            return render(request, 'SquirrelApp/submitfail.html')
+    else:
+        return {}
+
+"""
+def update(request, squirrel_id):
+    if request.method == "POST":
+        form = SightingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'SquirrelApp/submitted.html')
+        else:
+            return render(request, 'SquirrelApp/submitfail.html')
+    sighting = get_object_or_404(Sighting, UniqueSquirrelID=squirrel_id)
+    return render(request, 'SquirrelApp/update.html', {'sighting':sighting})
+"""
+
 
 def add_page(request):
     return render(request, 'SquirrelApp/add.html')
@@ -65,7 +68,7 @@ def add_request(request):
     return JsonResponse({}, status=405)
 
 def map(request):
-    return render(request, 'map.html',context)
+    return render(request, 'SquirrelApp/map.html')
 
 
 

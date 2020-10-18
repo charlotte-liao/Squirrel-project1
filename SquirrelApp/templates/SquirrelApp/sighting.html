@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<h1>The table element</h1>
+
+<table>
+  <tr>
+    <th>Sighting ID</th>
+    <th>Unique Squirrel ID</th>
+    <th>Date</th>
+    <th>View Sighting Detail</th>
+    <th>Update Sighting</th>
+  </tr>
+  {% for sighting in sightings %}
+    
+  <tr>
+    <td>{{sighting.id}}</td>
+    <td>{{sighting.UniqueSquirrelID}}</td>
+    <td>{{sighting.Date}}</td>
+    <td><a href="{% url 'SquirrelApp:detail' sighting.id %}">Detail</a></td>
+    <td><a href="{% url 'SquirrelApp:update_page' sighting.id %}">Update</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>

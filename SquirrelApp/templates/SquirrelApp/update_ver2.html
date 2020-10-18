@@ -1,0 +1,19 @@
+{% load static %}
+<!doctype html>
+
+<html>
+
+  <body>
+    <div>
+        <strong>Update form for {{ sighting.UniqueSquirrelID }}</strong>
+    </div>
+    <div>
+        <form method="post" action="{% url 'SquirrelApp:update' %}">
+          {% csrf_token %}   
+          {{ form.as_p }}<br>
+      <input type="submit" name="Update">
+      </form>
+    </div>
+  </body>
+
+</html>

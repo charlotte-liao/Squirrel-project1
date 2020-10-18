@@ -51,83 +51,102 @@ class Sighting(models.Model):
             help_text='shift',
             choices=SHIFT_CHOICES, 
             default=AM,
+            null=True,
     )
 
     Age = models.CharField(
             max_length=20,
             help_text='Age',
             default=0,
+            null=True,
     )
 
     PrimaryFurColor = models.CharField(
             max_length=20,
             blank = True,
+            null=True,
     )
 
     Location = models.TextField(
             blank = True,
+            null=True,
     )
     
     SpecificLocation = models.CharField(
             max_length=100,
             blank = True,
+            null=True,
     )
 
     Running = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     Chasing = models.BooleanField(
             blank = True,
+            null=True,
     )
     
     Climbing = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     Eating = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     Foraging = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     OtherActivities = models.CharField(
             max_length = 100,
             blank = True,
+            null=True,
     )
 
     Kuks = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     Quaas = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     Moans = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     TailFlags = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     TailTwitches = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     Approaches = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     Indifferent = models.BooleanField(
             blank = True,
+            null=True,
     )
 
     RunsFrom = models.BooleanField(
             blank = True,
+            null=True,
     )
    
 

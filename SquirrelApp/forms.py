@@ -2,7 +2,8 @@ from django.forms import ModelForm
 
 from .models import Sighting
 
-class UpdateRequestForm(ModelForm):
+
+class UpdateForm(ModelForm):
     class Meta:
         model = Sighting
         fields = [
@@ -10,11 +11,11 @@ class UpdateRequestForm(ModelForm):
                 'Latitude',
                 'Longitude',
                 'Shift',
-                'Date', 
+                'Date',
                 'Age',
         ]
    
-class AddRequestForm(ModelForm):
+class SightingForm(ModelForm):
     class Meta:
         model = Sighting
         fields = [
