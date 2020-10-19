@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 obj.Climbing=item['Climbing']
                 obj.Eating=item['Eating']
                 obj.Foraging=item['Foraging']
-                obj.OtherActivities=item['Other Activites']
+                obj.OtherActivities=item['Other Activities']
                 obj.Kuks=item['Kuks']
                 obj.Quaas=item['Quaas']
                 obj.Moans=item['Moans']
@@ -37,7 +37,7 @@ class Command(BaseCommand):
                 obj.TailTwitches=item['Tail twitches']
                 obj.Approaches=item['Approaches']
                 obj.Indifferent=item['Indifferent']
-                obj.RunsFrom=item['Run from']
+                obj.RunsFrom=item['Runs from']
                 obj.save()
 
 
