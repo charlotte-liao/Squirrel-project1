@@ -5,13 +5,6 @@ from django.db import models
 
 
 class Sighting(models.Model):
-    """
-    SquirrelObject = models.ForeignKey(
-            'SquirrelApp.Squirrel',
-            on_delete=models.CASCADE,
-            default=Squirrel.objects.get(pk=UniqueSquirrelID),
-    )
-    """
 
     UniqueSquirrelID=models.CharField(
             max_length=100,
@@ -26,13 +19,13 @@ class Sighting(models.Model):
         return f'{self.id}'
 
 
-    Latitude = models.CharField(
+    Latitude = models.FloatField(
             max_length=20,
             blank = True,
             help_text='Latitude discovered',
     )
 
-    Longitude = models.CharField(
+    Longitude = models.FloatField(
             max_length=20,
             blank = True,
             help_text='Longitude discovered',
