@@ -1,38 +1,36 @@
-{% extends 'SquirrelApp/base.html' %}
+<!doctype html>
+<html>
+<head>
+<style>
+h1 {text-align: center}
+div {text-align: center}
+a:link, a:visited {
+  border: 2px solid #ffebef;
+  background-color: white; 
+  color: #ffb8c9;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 
-{% load static %}
+a:hover, a:active {
+  color: white;
+  background-color: #ffb8c9;
+}
 
-{% block title %} - All Sightings{% endblock %}
+</style>
+</head>
 
-{% block main %}
-  <div class="album py-5 bg-light">
-    <div class="container">
+<body>
+<h1>TRACK THAT MF DOWN!!!!!</h1>
+<div>
+<a href="{% url 'SquirrelApp:map' %}">Map</a>
+<a href="{% url 'SquirrelApp:sightings' %}">Sightings</a>
+</div>
+</body>
 
-      <div class="row">
-        {% for sighting in sightings %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-body">
-              <p class="card-text">
-                <div class="sighting-id">
-                  <strong>{{ sighting.id }}</strong>
-                </div>
-                <div>
-                  <span class="text-muted font-italic">Date</span>
-                  <span>
-                    {{ sighting.Date }}
-                  </span>
-                </div>
-              </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a class="btn btn-sm btn-outline-secondary" href="{% url 'SquirrelApp:detail' sighting.id %}">Detail</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-{% endblock %}
+</html>

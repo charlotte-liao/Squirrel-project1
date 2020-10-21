@@ -8,6 +8,9 @@ from .models import Sighting
 from .models import Squirrel
 
 def index(request):
+    return render(request, 'SquirrelApp/index.html')
+
+def sightings(request):
     sightings = Sighting.objects.all()
     context = {
             'sightings': sightings,
@@ -30,7 +33,7 @@ def update_page(request, sighting_id):
 
 def update_request(request):
     if request.method == 'POST':
-        form = UpdateForm(request.POST)
+        form = SightingForm(request.POST)
         if form.is_valid():
             form.save()
             return render(request, 'SquirrelApp/submitted.html')
@@ -39,18 +42,6 @@ def update_request(request):
     else:
         return {}
 
-"""
-def update(request, squirrel_id):
-    if request.method == "POST":
-        form = SightingForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'SquirrelApp/submitted.html')
-        else:
-            return render(request, 'SquirrelApp/submitfail.html')
-    sighting = get_object_or_404(Sighting, UniqueSquirrelID=squirrel_id)
-    return render(request, 'SquirrelApp/update.html', {'sighting':sighting})
-"""
 
 
 def add_page(request):

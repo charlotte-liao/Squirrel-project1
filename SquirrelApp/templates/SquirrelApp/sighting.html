@@ -5,12 +5,20 @@
 table, th, td {
   border: 1px solid black;
 }
+.addLink {
+  text-align: right;
+}
 </style>
 </head>
 <body>
 
-<h1>The table element</h1>
+<div class="addLink">
+  <a href="{% url 'SquirrelApp:add' %}">Add New Sightings!</a>
+</div>
 
+<h1>Sightings</h1>
+
+<div class="table, th, td">
 <table>
   <tr>
     <th>Sighting ID</th>
@@ -30,6 +38,7 @@ table, th, td {
   </tr>
   {% endfor %}
 </table>
+</div>
 
 </body>
 </html>

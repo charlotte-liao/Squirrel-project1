@@ -1,10 +1,13 @@
+<!doctype html>
 <html>
-        <body>
-	  <ul>
- 	    <li>{{ sighting.id }}</li>
-  	    <li>{{ sighting.Date }}</li>
-  	    <li>{{ sighting.Latitude }}</li>
-	  </ul>
-        </body>
-
+  <head>
+    <h5>Details for sigthting {{sighting.id}}</h5>
+  </head>
+  <body>
+    <ul>
+    {% for name, value in sighting.get_fields %}
+      <li>{{name}}: {{value}}</li>
+    {% endfor %}
+    </ul>
+  </body>
 </html> 

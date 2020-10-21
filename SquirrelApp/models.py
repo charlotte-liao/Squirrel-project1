@@ -9,6 +9,8 @@ class Sighting(models.Model):
     UniqueSquirrelID=models.CharField(
             max_length=100,
             help_text='Unique Squirrel ID',
+            blank=False,
+            null=False,
     )
 
     Date=models.DateField(
@@ -21,13 +23,15 @@ class Sighting(models.Model):
 
     Latitude = models.FloatField(
             max_length=20,
-            blank = True,
             help_text='Latitude discovered',
+            blank=False,
+            null=False,
     )
 
     Longitude = models.FloatField(
             max_length=20,
-            blank = True,
+            blank=False,
+            null=False,
             help_text='Longitude discovered',
     )
    
@@ -141,6 +145,9 @@ class Sighting(models.Model):
             blank = True,
             null=True,
     )
+
+    def get_fields(self):
+        return [(field.name, field.value_to_string(self)) for field in Sighting._meta.fields]
    
 
 
