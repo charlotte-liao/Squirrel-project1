@@ -2,6 +2,7 @@
 from django.core.management.base import BaseCommand
 import csv
 from SquirrelApp.models import Sighting
+from datetime import datetime
 
 class Command(BaseCommand):
     help="Getting information about squirrels"
@@ -18,7 +19,7 @@ class Command(BaseCommand):
                 obj.Latitude=item['X']
                 obj.Longtitude = item['Y']
                 obj.Shift = item['Shift']
-                obj.Date = item['Date']
+                obj.Date = atetime.date(int(item['Date'][-4:]),int(item['Date'][:2]), int(item['Date'][2:4])),
                 obj.Age = item['Age']
                 obj.UniqueSquirrelID = item['Unique Squirrel ID']
                 obj.PrimaryFurColor=item['Primary Fur Color']

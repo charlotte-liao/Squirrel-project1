@@ -61,8 +61,3 @@ def add_request(request):
 def map(request):
     return render(request, 'SquirrelApp/map.html')
 
-
-
-
-
-# Create your views here.
