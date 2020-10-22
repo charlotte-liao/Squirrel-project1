@@ -1,20 +1,17 @@
-# page showing the stats of all squrrels
-
 
 <!doctype html>
 <html>
    <body>
-      <p>Some Stats about Squirrels</p>
-    	<ul>
-		<li>The average age of squirrels is {{Age Average}}.<\lii>
-		<li>Total of {{Number of Running}} squirrels were running.<\lii>
-		<li>Total of {{Number of Eating}} squirrels were eating.<\lii>
-		<li>Total of {{Number of Chasing}} squirrels were chasing.<\lii>
-		<li>Total of {{Number of Foraing}} squirrels were foraing.<\lii>
-      	<\ul>
-	<a href="{% url 'SquirrelApp:sightings' %}">Go back to list of sightings</a>
+      <h3 style="color:pink">Some Stats about Squirrels</h3>
+      <ul>
+		<li>The number of adult squirrels is {{AdultCounts}}.</li>
+		<li>Total of {{NumRunning}} squirrels were running.</li>
+		<li>Total of {{NumEating}} squirrels were eating.</li>
+		<li>Total of {{NumChasing}} squirrels were chasing.</li>
+		<li>Total of {{NumForaging}} squirrels were foraing.</li>
+      </ul>
+
+      <p><a href="{% url 'SquirrelApp:sightings' %}">Go back to list of sightings</a></p>
   </body>
 </html> 
 	
-   </body>
-</html>

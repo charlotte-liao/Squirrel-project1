@@ -52,15 +52,14 @@ def map(request):
 
 def stats(request):
     sightings=Sighting.objects.all()
-    age_total=0
     running_c=0
     chasing_c=0
     eating_c=0
     foraging_c=0
-    age_c=0
+    adult_c=0
     for s in sightings:
-        age_total=s.Age
-        age_c+=1
+        if s.Age == "Adult":
+            adult_c+=1
         if s.Running == True:
             running_c+=1
         if s.Chasing == True:
@@ -69,12 +68,11 @@ def stats(request):
             eating_c+=1
         if s.Foraging == True:
             foraging_c+=1
-    age_avg=age_total/age_c
     context={
-            'Age Average':age_ave,
-            'Number of Running':running_c,
-            'Number of Chasing':chasing_c,
-            'Number of Eating':eating_c,
-            'Number of Foraging':foraging_c,
+            'AdultCounts':adult_c,
+            'NumRunning':running_c,
+            'NumChasing':chasing_c,
+            'NumEating':eating_c,
+            'NumForaging':foraging_c,
             }
     return render(request,'SquirrelApp/stats.html',context)
