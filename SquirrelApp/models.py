@@ -15,6 +15,8 @@ class Sighting(models.Model):
 
     Date=models.DateField(
             help_text='Date',
+            blank=True,
+            null=True,
     )
 
     def __str__(self):
@@ -23,7 +25,7 @@ class Sighting(models.Model):
 
     Latitude = models.FloatField(
             max_length=20,
-            help_text='Latitude discovered',
+            help_text='Latitude',
             blank=False,
             null=False,
     )
@@ -32,7 +34,7 @@ class Sighting(models.Model):
             max_length=20,
             blank=False,
             null=False,
-            help_text='Longitude discovered',
+            help_text='Longitude',
     )
    
     AM = 'AM'
@@ -45,10 +47,11 @@ class Sighting(models.Model):
 
     Shift = models.CharField(
             max_length=20,
-            help_text='shift',
+            help_text='Shift',
             choices=SHIFT_CHOICES, 
             default=AM,
             null=True,
+            blank=True, 
     )
 
     Age = models.CharField(
@@ -56,99 +59,122 @@ class Sighting(models.Model):
             help_text='Age',
             default=0,
             null=True,
+            blank=True,
     )
 
     PrimaryFurColor = models.CharField(
             max_length=20,
             blank = True,
             null=True,
+            help_text="Primary Fur Color",
     )
 
     Location = models.TextField(
             blank = True,
             null=True,
+            help_text="Location",
     )
     
     SpecificLocation = models.CharField(
             max_length=100,
             blank = True,
             null=True,
+            help_text="Specific Location",
     )
 
     Running = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Running",
     )
 
     Chasing = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Chasing",
     )
     
     Climbing = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Climbing",
     )
 
     Eating = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Eating",
     )
 
     Foraging = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Foraging",
     )
 
     OtherActivities = models.CharField(
             max_length = 100,
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Other Activities",
     )
 
     Kuks = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Kuks",
     )
 
     Quaas = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Quaas",
     )
 
     Moans = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Moans",
     )
 
     TailFlags = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Tail Flags",
     )
 
     TailTwitches = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Tail Twiches",
     )
 
     Approaches = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Approaches",
     )
 
     Indifferent = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Indifferent",
     )
 
     RunsFrom = models.BooleanField(
-            blank = True,
+            blank=True,
             null=True,
+            help_text="Runs From",
     )
 
     def get_fields(self):
-        return [(field.name, field.value_to_string(self)) for field in Sighting._meta.fields]
-   
+        l = list()
+        for field in Sighting._meta.fields:
+            if field.name=="id":
+                l.append((field.name, field.value_to_string(self)))
+            else:
+                l.append((field.help_text, field.value_to_string(self)))
+        return l   
 
 
 class Squirrel(models.Model):

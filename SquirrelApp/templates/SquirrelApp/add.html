@@ -1,3 +1,187 @@
+<!DOCTYPE html>
 <html>
-	add stuff
-<html>
+    
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=radio], select{
+  padding= 12px 20px;
+  display: inline-block;
+  margin: 8px 0;
+}
+
+input[type=date], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+    
+<body>
+  <h3 style="color:green">Add a new sighting!</h3>
+  <div>
+  <form id="submit" method="post" action="{% url 'SquirrelApp:update' %}">
+     {% csrf_token %}
+       
+     <label for="UniqueSquirrelID">Unique Squirrel ID</label>
+     <Input type="text" id="UniqueSquirrelID" name="UniqueSquirrelID" placeholder="Unique Squirrel ID // Mandatory Field">
+
+     <label for="Latitude">Latitude:</label>
+     <input type="number" step="any" id="Latitude" placeholder="Latitude // Mandatory Field" name="Latitude">
+       
+     <label for="Longitude">Longitude:</label>
+     <input type="number" step="any" id="Longitude" placeholder="Longitude // Mandatory Field" name="Longitude">
+
+     <label for="Shift">Shift:</label><br>
+     <input type="radio" id="AM" name="Shift" value="AM">
+     <label for="AM">AM</label><br>
+     <input type="radio" id="PM" name="Shift" value="PM">
+     <label for="PM">PM</label><br><br>
+
+     <label for="Date">Date:</label>
+     <input type="date" id="Date" name="Date">
+     
+     <label for="Age">Age:</label>
+     <input type="number" id="Age" name="Age" placeholder="Age" >
+     
+     <label for="PrimaryFurColor">Primary Fur Color:</label>
+     <Input type="text" id="PrimaryFurColor" name="PrimaryFurColor" placeholder="Primary Fur Color"> 
+         
+     <label for="Location">Location:</label>
+     <Input type="text" id="Location" name="Location" placeholder="Location"> 
+     
+     <label for="SpecificLocation">Specific Location:</label>
+     <Input type="text" id="SpecificLocation" name="SpecificLocation" placeholder="SpecificLocation"> 
+         
+     <label for="Running">Running:</label><br>
+     <input type="radio" id="True" name="Running" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Running" value="False">
+     <label for="False">False</label><br><br>
+
+
+     <label for="Chasing">Chasing:</label><br>
+     <input type="radio" id="True" name="Chasing" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Chasing" value="False">
+     <label for="False">False</label><br><br>
+
+     <label for="Climbing">Climbing: </label><br>
+     <input type="radio" id="True" name="Climbing" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Climbing" value="False">
+     <label for="False">False</label><br><br>         
+     
+     <label for="Eating">Eating: </label><br>
+     <input type="radio" id="True" name="Eating" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Eating" value="False">
+     <label for="False">False</label><br><br>    
+     
+     <label for="Foraging">Foraging: </label><br>
+     <input type="radio" id="True" name="Foraging" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Foraging" value="False">
+     <label for="False">False</label><br><br>
+
+     <label for="OtherActivities">Other Activities:</label>
+     <Input type="text" id="OtherActivities" name="OtherActivities" placeholder="OtherActivities"> 
+
+     <label for="Kuks">Kuks: </label><br>
+     <input type="radio" id="True" name="Kuks" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Kuks" value="False">
+     <label for="False">False</label><br><br>
+
+     <label for="Quaas">Quaas: </label><br>
+     <input type="radio" id="True" name="Quaas" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Quaas" value="False">
+     <label for="False">False</label><br><br>
+        
+     <label for="Moans">Moans: </label><br>
+     <input type="radio" id="True" name="Moans" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Moans" value="False">
+     <label for="False">False</label><br><br>
+        
+     <label for="TailFlags">Tail Flags: </label><br>
+     <input type="radio" id="True" name="TailFlags" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="TailFlags" value="False">
+     <label for="False">False</label><br><br>
+        
+     <label for="TailTwitches">Tail Twitches: </label><br>
+     <input type="radio" id="True" name="TailTwitches" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="TailTwitches" value="False">
+     <label for="False">False</label><br><br>
+        
+     <label for="Approaches">Approaches: </label><br>
+     <input type="radio" id="True" name="Approaches" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Approaches" value="False">
+     <label for="False">False</label><br><br>
+        
+     <label for="Indifferent">Indifferent: </label><br>
+     <input type="radio" id="True" name="Indifferent" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="Indifferent" value="False">
+     <label for="False">False</label><br><br>
+        
+     <label for="RunsFrom">RunsFrom: </label><br>
+     <input type="radio" id="True" name="RunsFrom" value="True">
+     <label for="True">True</label><br>
+     <input type="radio" id="False" name="RunsFrom" value="False">
+     <label for="False">False</label><br><br>         
+         
+         
+     <input type="submit" value="Add">
+    
+  </form>
+  </div>
+</body>
+</html>

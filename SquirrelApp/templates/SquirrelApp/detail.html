@@ -1,13 +1,16 @@
 <!doctype html>
 <html>
   <head>
-    <h5>Details for sigthting {{sighting.id}}</h5>
+    <h5 style="color:green">Details for sigthting {{sighting.id}}</h5>
   </head>
   <body>
+  <div>
     <ul>
     {% for name, value in sighting.get_fields %}
       <li>{{name}}: {{value}}</li>
     {% endfor %}
     </ul>
+  </div>
+  <a href="{% url 'SquirrelApp:sightings' %}">Go back to list of sightings</a>
   </body>
 </html> 

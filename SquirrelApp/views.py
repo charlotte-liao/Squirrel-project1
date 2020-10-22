@@ -3,9 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.http import JsonResponse
 from .forms import SightingForm
-from .forms import UpdateForm
 from .models import Sighting
-from .models import Squirrel
 
 def index(request):
     return render(request, 'SquirrelApp/index.html')
@@ -42,21 +40,8 @@ def update_request(request):
     else:
         return {}
 
-
-
 def add_page(request):
     return render(request, 'SquirrelApp/add.html')
-
-def add_request(request):
-    if request.method == 'POST':
-        form = AddRequestForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({})
-        else:
-            return JsonResponse({'errors': form.errors}, status=400)
-
-    return JsonResponse({}, status=405)
 
 def map(request):
     return render(request, 'SquirrelApp/map.html')
