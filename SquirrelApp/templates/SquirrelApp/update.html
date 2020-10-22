@@ -40,7 +40,7 @@ input[type=number], select {
 
 input[type=submit] {
   width: 100%;
-  background-color: #4CAF50;
+  background-color: #f7abbe;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -50,7 +50,11 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+  background-color: #f291a9;
+}
+
+.addLink {
+  text-align: right;
 }
 
 div {
@@ -61,7 +65,8 @@ div {
 </style>
 
 <body>
-   <h3 style="color:green">Update Form for Squirrel {{ sighting.UniqueSquirrelID }}</h3>
+   <p class="addLink"><a href="{% url 'SquirrelApp:sightings'%}">Go back to list of sightings</a></p>
+   <h3 style="color:#f291a9">Update Form for Squirrel {{ sighting.UniqueSquirrelID }}</h3>
    <div>
    <form id="submit" method="post" action="{% url 'SquirrelApp:update' %}">
         {% csrf_token %}
