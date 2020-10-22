@@ -11,21 +11,27 @@ table, th, td {
 </style>
 </head>
 <body>
-
 <div class="addLink">
   <a href="{% url 'SquirrelApp:add_page' %}">Add New Sightings!</a>
 </div>
+<div class="addLink">
+  <a href="{% url 'SquirrelApp:stats' %}">View Sighting Statistics!</a>
+</div>
+<div class="addLink">
+  <a href="{% url 'SquirrelApp:index' %}">Go Back to Index Page!</a>
+</div>
 
-<h1>Sightings</h1>
+
+<h1 style="color:#e6739f">Sightings</h1>
 
 <div class="table, th, td">
 <table>
   <tr>
-    <th>Sighting ID</th>
-    <th>Unique Squirrel ID</th>
-    <th>Date</th>
-    <th>View Sighting Detail</th>
-    <th>Update Sighting</th>
+    <th> Sighting ID </th>
+    <th> Unique Squirrel ID </th>
+    <th> Date </th>
+    <th> View Sighting Details </th>
+    <th> Update Sighting </th>
   </tr>
   {% for sighting in sightings %}
     
@@ -34,7 +40,7 @@ table, th, td {
     <td>{{sighting.UniqueSquirrelID}}</td>
     <td>{{sighting.Date}}</td>
     <td><a href="{% url 'SquirrelApp:detail' sighting.id %}">Detail</a></td>
-    <td><a href="{% url 'SquirrelApp:update_page' sighting.id %}">Update</a></td>
+    <td><a href="{% url 'SquirrelApp:update_page' sighting.UniqueSquirrelID %}">Update</a></td>
   </tr>
   {% endfor %}
 </table>

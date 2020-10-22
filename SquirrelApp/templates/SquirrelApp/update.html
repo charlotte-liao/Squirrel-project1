@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html>
 
 <style>
@@ -53,6 +55,22 @@ input[type=submit]:hover {
   background-color: #f291a9;
 }
 
+button{
+  width: 100%;
+  background-color: #f7abbe;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #f291a9;
+}
+
+
 .addLink {
   text-align: right;
 }
@@ -66,8 +84,10 @@ div {
 
 <body>
    <p class="addLink"><a href="{% url 'SquirrelApp:sightings'%}">Go back to list of sightings</a></p>
-   <h3 style="color:#f291a9">Update Form for Squirrel {{ sighting.UniqueSquirrelID }}</h3>
+   <h3 style="color:#e6739f">Update Form for Squirrel {{ sighting.UniqueSquirrelID }}</h3>
    <div>
+   <p style="color:#155263">Use this form to update a sighting for squirrel {{ sighting.UniqueSquirrelID }}. This form is prepopulated with the lat/long and date of the lastest sighting of squirrel {{ sighting.UniqueSquirrelID }}.</p>
+   
    <form id="submit" method="post" action="{% url 'SquirrelApp:update' %}">
         {% csrf_token %}
 	<label for="Latitude">Latitude:</label>
@@ -77,21 +97,49 @@ div {
         <input type="number" step="any" id="Longitude" value="{{sighting.Longitude}}" placeholder="Longitude // Mandatory Field" name="Longitude">
 
         <label for="Shift">Shift:</label><br>
-        <input type="radio" id="AM" name="Shift" value="AM">
+	<input type="radio" id="AM" name="Shift" value="AM" >
         <label for="AM">AM</label><br>
-        <input type="radio" id="PM" name="Shift" value="PM">
+        <input type="radio" id="PM" name="Shift" value="PM" >
 	<label for="PM">PM</label><br><br>
 
         <label for="Date">Date:</label>
         <input type="date" id="Date" value="{{sighting.Date|date:"Y-m-d"}}" name="Date">
         
-	<label for="Age">Age:</label>
-	<input type="number" id="Age" value="{{sighting.Age}}" name="Age" placeholder="Age" >
-        <input type="hidden" name="UniqueSquirrelID" value="{{sighting.UniqueSquirrelID}}" >
+	<label for="Age">Age:</label><br>
+        <input type="radio" id="Juvenile" name="Age" value="Juvenile">
+        <label for="Juvenile">Juvenile</label><br>
+        <input type="radio" id="Adult" name="Age" value="Adult">
+        <label for="Adult">Adult</label><br><br>
 
-        <input type="submit" value="Update">
+	<input type="hidden" id="UniqueSquirrelID" name="UniqueSquirrelID" value="{{sighting.UniqueSquirrelID}}">
+	<button type="button" onclick="validate()">Validate Input before you submit!</button>
+	<input type="submit" value="Update">
+	<p id="error_msg" style="color:red"></p>
     </form>
     </div>
 </body>
+
+<script>
+function validate(){
+  var lat, lon, message;
+  message = document.getElementById("error_msg");
+  message.innerHTML = "";
+  lat = document.getElementById("Latitude").value;
+  lon = document.getElementById("Longitude").value;
+  try{
+    if (lat=="" || lon=="") throw "empty";
+    if (isNaN(lat) || isNaN(lon)) throw "not a number";
+  }
+  catch(err){
+    message.innerHTML = "Error: Latitude/Longitude is " + err;
+  }
+  finally{
+    message.innerHTML = message.innerHTML + " Validation complete."
+  }
+}
+
+</script>
+
+
 
 </html>

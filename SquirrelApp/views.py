@@ -20,12 +20,11 @@ def sighting_details(request, sighting_id):
     sighting = get_object_or_404(Sighting, pk=sighting_id)
     return render(request, 'SquirrelApp/detail.html', {'sighting':sighting})
 
-
-def update_page(request, sighting_id):
-    sighting = get_object_or_404(Sighting, pk=sighting_id)
+def update_page(request, squirrel_id):
+    sighting = Sighting.objects.filter(UniqueSquirrelID=squirrel_id).order_by('id').last()
     context = {
             'sighting':sighting,
-            }
+    }
     return render(request, 'SquirrelApp/update.html', context)
 
 
@@ -39,6 +38,7 @@ def update_request(request):
             return render(request, 'SquirrelApp/submitfail.html')
     else:
         return {}
+
 
 def add_page(request):
     return render(request, 'SquirrelApp/add.html')

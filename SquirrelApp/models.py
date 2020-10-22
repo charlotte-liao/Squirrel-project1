@@ -54,10 +54,16 @@ class Sighting(models.Model):
             blank=True, 
     )
 
+    ADULT = 'Adult'
+    JUVENILE = 'Juvenile'
+
+    AGE_CHOICES = [ (ADULT, 'Adult'), (JUVENILE, 'Juvenile'), ]
+
     Age = models.CharField(
             max_length=20,
             help_text='Age',
-            default=0,
+            default=ADULT,
+            choices=AGE_CHOICES,
             null=True,
             blank=True,
     )
@@ -177,12 +183,3 @@ class Sighting(models.Model):
         return l   
 
 
-class Squirrel(models.Model):
-    UniqueSquirrelID=models.CharField(
-            max_length=100,
-            primary_key=True,
-            help_text='Unique Squirrel ID',
-    )
-
-    def __str__(self):
-        return self.UniqueSquirrelID
