@@ -4,9 +4,17 @@
 <!doctype html>
 <html>
    <body>
-      <p>This is stats</p>
-      {% for sighting in sightings %}
-      {{sighting.Running}}
-      {% endfor %}
+      <p>Some Stats about Squirrels</p>
+    	<ul>
+		<li>The average age of squirrels is {{Age Average}}.<\lii>
+		<li>Total of {{Number of Running}} squirrels were running.<\lii>
+		<li>Total of {{Number of Eating}} squirrels were eating.<\lii>
+		<li>Total of {{Number of Chasing}} squirrels were chasing.<\lii>
+		<li>Total of {{Number of Foraing}} squirrels were foraing.<\lii>
+      	<\ul>
+	<a href="{% url 'SquirrelApp:sightings' %}">Go back to list of sightings</a>
+  </body>
+</html> 
+	
    </body>
 </html>
