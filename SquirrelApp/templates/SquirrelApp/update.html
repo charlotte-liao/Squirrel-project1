@@ -131,7 +131,7 @@ function validate(){
     if (isNaN(lat) || isNaN(lon)) throw "not a number";
   }
   catch(err){
-    message.innerHTML = "Error: Latitude/Longitude is " + err;
+    message.innerHTML = "Error: Latitude/Longitude is " + err + ".";
   }
   finally{
     message.innerHTML = message.innerHTML + " Validation complete."
