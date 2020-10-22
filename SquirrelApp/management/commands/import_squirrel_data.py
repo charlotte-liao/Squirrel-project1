@@ -9,11 +9,11 @@ class Command(BaseCommand):
 
     def add_arguments(self,parser):
         parser.add_argument('squirrel_file', help = 'file containing squirrel details')
+    
+
 
     def handle(self,*args,**options):
         file_=options['squirrel_file']
-        with open(file_) as fp:
-            reader=csv.DictReader(fp)
         def convert_bool(str_):
             if str(str_) in ['TRUE', 'true', 'True']:
                 str_ = True
@@ -22,11 +22,14 @@ class Command(BaseCommand):
             else:
                 str_ = None
             return str_
-
+        with open(file_) as fp:
+            reader=csv.DictReader(fp)
+            
             for item in reader:
+
                 obj=Sighting()
-                obj.Latitude=item['X']
-                obj.Longtitude = item['Y']
+                obj.Latitude=float(item['X'])
+                obj.Longitude = float(item['Y'])
                 obj.Shift = item['Shift']
                 obj.Date = datetime(int(item['Date'][-4:]),int(item['Date'][:2]), int(item['Date'][2:4]))
                 obj.Age = item['Age']

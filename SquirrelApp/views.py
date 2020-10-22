@@ -44,11 +44,15 @@ def add_page(request):
     return render(request, 'SquirrelApp/add.html')
 
 def map(request):
-    return render(request, 'SquirrelApp/map.html')
+    sightings = Sighting.objects.all()[:100]
+    context = {
+            'sightings':sightings,
+    }
+    return render(request, 'SquirrelApp/map.html', context)
 
 def stats(request):
     sightings=Sighting.objects.all()
     context={
-            'sightings':sightings
+            'sightings':sightings,
             }
     return render(request,'SquirrelApp/stats.html',context)

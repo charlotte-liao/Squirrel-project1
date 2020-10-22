@@ -11,7 +11,7 @@ urlpatterns = [
         path('sightings/add', views.add_page, name='add_page'),
         path('sightings/str:squirrel_id/<str:sighting_id>', views.update_page, name='update_page'),
         path('add', views.update_request, name="add"),
-        path('sightings/stats',views.stats,name='stats')
+        path('sightings/stats',views.stats,name='stats'),
         path('update', views.update_request, name="update"),
         path('map',views.map,name='map'),
 
